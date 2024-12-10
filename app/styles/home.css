@@ -242,11 +242,13 @@ a {
         width: 100px;
         background-color: #262626;
         box-shadow: 0px 0px 18px -2px #15151591;
+        border-radius: 50px;
         overflow-y: hidden;
         position: relative;
         display: flex;
-        width: 100%;
+        width: max-content;
         height: max-content;
+        margin: auto;
     }
 
     .sidemenu h3 {
@@ -283,7 +285,7 @@ a {
 
     .movies-content {
         margin: 0;
-        padding-right: 0;
+        width: 100%;
     }
 
     .card-movie {
@@ -292,6 +294,9 @@ a {
 
     .container-movies {
         padding-bottom: 10px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
     }
 
     .container-info-add {
@@ -305,5 +310,12 @@ a {
 
     .image-movie {
         height: 180px;
+    }
+
+    .container-pagination {
+        margin: 0;
+        width: max-content;
+        margin: auto;
+        gap: 20px;
     }
 }
