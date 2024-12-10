@@ -1,9 +1,9 @@
 'use client'
-
+import { MovieCategory } from '@/app/interfaces/movie';
 import '../../styles/home.css'
 
 interface SideMenuProps {
-    handleCategoryClick: (value: string) => void;
+    handleCategoryClick: (value: MovieCategory) => void;
     selectedCategory: string
     modules: string[]
 }
@@ -13,17 +13,13 @@ export const SideMenu = ({ handleCategoryClick, selectedCategory, modules }: Sid
         <aside className='sidemenu'>
             <h3>Genres</h3>
             <ul>
-                <li className={selectedCategory === 'All' ? 'active' : ''}
-                    onClick={() => handleCategoryClick('All')}>
-                    Todas
-                </li>
                 {modules && modules.map((module) => (
                     <li
                         onClick={() => handleCategoryClick(module)}
                         className={selectedCategory === module ? 'active' : ""}
                         key={module}
                     >
-                        {module}
+                        {module.replace('_', ' ').toLowerCase()}
                     </li>
                 ))}
             </ul>
