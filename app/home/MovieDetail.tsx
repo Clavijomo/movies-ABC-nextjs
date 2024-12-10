@@ -30,11 +30,11 @@ export const MovieDetail = ({ movie }: Props) => {
                     <p className="description-movie">{release_date}</p>
                     <div className="container-info-add">
                         <div>
-                            <CircularProgressRating minimal score={vote_average} />
+                            <CircularProgressRating minimal={true} score={vote_average} />
                         </div>
                         <div>
                             <p>Favorites</p>
-                            <p>Favortito</p>
+                            <p>Favorito</p>
                         </div>
                     </div>
                 </div>

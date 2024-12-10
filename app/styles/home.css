@@ -2,15 +2,16 @@ body {
     background-color: #454545;
     margin: auto;
     color: #fff;
-    overflow: auto;
     min-height: 100vh;
+    overflow: auto;
 }
 
 .dashboard-container {
-    height: calc(100% - 337px);
-    overflow-y: auto;
+    margin-top: 80px;
+    height: calc(100% - 50px);
     display: flex;
     flex-direction: column;
+    overflow: scroll;
     box-sizing: border-box;
 }
 
@@ -120,11 +121,11 @@ a {
 
 .movies-content {
     margin-left: 300px;
-    overflow-y: auto;
+    overflow: auto;
     padding: 0px 20px;
+    flex: 1;
     box-sizing: border-box;
-    width: calc(100% - 250px);
-    height: auto;
+    width: calc(100% - 300px);
 }
 
 .container-movies {
@@ -132,6 +133,8 @@ a {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 16px;
     max-width: 1200px;
+    overflow-y: auto;
+    flex: 1;
     margin: 0 auto;
 }
 

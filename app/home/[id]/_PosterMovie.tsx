@@ -1,15 +1,33 @@
+'use client'
+
+import { CircularProgressRating } from "@/app/components/shared/CircularProgressRating"
 import { Movie } from "@/app/interfaces/movie"
 import Image from "next/image"
+import '../../styles/movie.css'
+import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
+import { IconButton } from "@mui/material";
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import { useRouter } from "next/navigation";
 
 interface Props { movie: Movie }
 
+
 export const PosterMovie = ({ movie }: Props) => {
+    const router = useRouter();
+
+    const { title, overview, release_date, vote_average } = movie;
+
     return (
         <div className='container-detail-movie'>
             <div className='overlay' />
-            {/* <IconButton className='button-back-poster' sx={{ padding: 2 }} size='medium' onClick={() => router.back()}>
-                <ArrowBack />
-            </IconButton> */}
+            <IconButton
+                onClick={() => router.back()}
+                className="button-back-poster"
+                sx={{ padding: 2 }}
+                size="medium"
+            >
+                <ArrowBackIosNewIcon />
+            </IconButton>
             <div className='detail-movie'>
                 <div className='section-trailer-movie'>
                     <Image
@@ -21,32 +39,25 @@ export const PosterMovie = ({ movie }: Props) => {
                     />
                     <button>
                         Oficial trailer
-                        {/* <PlayArrowOutlinedIcon /> */}
+                        <PlayArrowOutlinedIcon />
                     </button>
                 </div>
                 <div>
-                    <h1 className='title-movie-detail'>name</h1>
+                    <h1 className='title-movie-detail'>{title}</h1>
                     <div className='sub-info-movie'>
-                        <p>date</p>
-                        <p>min</p>
+                        <p>{release_date}</p>
+                        <p>{ }</p>
                     </div>
-                    <p className='description-poster-movie'>description</p>
+                    <p className='description-poster-movie'>{overview}</p>
                     <div className='container-score'>
                         <div className='score'>
-                            {/* <CircularRating score={rating} /> */}
+                            <CircularProgressRating score={vote_average} />
                             <p>Users Score</p>
                         </div>
                         <div>
                             {/* {favorite === true ? <Favorite /> : <FavoriteBorderOutlined />} */}
                         </div>
                     </div>
-                    {/* {tags && tags.length > 0 &&
-                        <div className='tag-container'>
-                            {tags.map((tag, i) => (
-                                <p className='tag' key={i}>{tag}</p>
-                            ))}
-                        </div>
-                    } */}
                 </div>
             </div>
         </div>

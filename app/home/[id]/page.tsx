@@ -1,27 +1,26 @@
-import { tmdbClient } from "@/app/utils/tmdbClient";
+import { getMovieDetails } from '@/app/api/getMovieDetails';
+import '../../styles/home.css';
 import { PosterMovie } from "./_PosterMovie";
+import { tmdbClient } from '@/app/utils/tmdbClient';
+import { CardMovieRelates } from './_CardMovieRelates';
+import { Movie } from '@/app/interfaces/movie';
 
-interface MovieDetailProps {
-    params: {
-        id: string;
-    };
-}
-
-async function getMovieDetails(movieId: string) {
+async function getRecommendations(movieId: string) {
     try {
-        const response = await tmdbClient.get(`/movie/${movieId}`);
-        return response.data;
+        const response = await tmdbClient.get(`/movie/${movieId}/recommendations`);
+        return response.data.results;
     } catch (error: any) {
-        console.error('Error fetching Movie', error);
-        return null;
+        console.error("Error fetching recommendations", error);
+        return [];
     }
 }
 
-export default async function MovieDetailPage({ params }: MovieDetailProps) {
+export default async function MovieDetailPage({ params }: { params: { id: string } }) {
     const movie = await getMovieDetails(params.id);
+    const recommendations: Movie[] = await getRecommendations(params.id);
 
     if (!movie) {
-        return <p>No se encontro la pelicula</p>
+        return <p>No se encontró la película</p>;
     }
 
     return (
@@ -31,16 +30,19 @@ export default async function MovieDetailPage({ params }: MovieDetailProps) {
                 <div>
                     <h2>Recommendations</h2>
                     <div className='relates-movies'>
-                        {/* {moviesRecommend.map((related, i) => (
-                            <CardRelated
-                                {...related}
-                                key={i}
-                            />
-                        ))} */}
+                        {recommendations && recommendations.length > 0 ?
+                            recommendations.map(({ id, title, backdrop_path }) => (
+                                <CardMovieRelates
+                                    backdrop_path={backdrop_path}
+                                    title={title}
+                                    key={id}
+                                />
+                            )) :
+                            <p>No recommendations available</p>
+                        }
                     </div>
                 </div>
-
             </div>
         </div>
-    )
+    );
 }
