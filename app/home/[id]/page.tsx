@@ -1,23 +1,17 @@
-import { getMovieDetails } from '@/app/api/getMovieDetails';
-import '../../styles/home.css';
-import { PosterMovie } from "./_PosterMovie";
-import { tmdbClient } from '@/app/utils/tmdbClient';
-import { CardMovieRelates } from './_CardMovieRelates';
+import { getMovieDetails, getRecommendations } from '@/app/api/api';
 import { Movie } from '@/app/interfaces/movie';
-
-async function getRecommendations(movieId: string) {
-    try {
-        const response = await tmdbClient.get(`/movie/${movieId}/recommendations`);
-        return response.data.results;
-    } catch (error: any) {
-        console.error("Error fetching recommendations", error);
-        return [];
-    }
-}
+import '../../styles/home.css';
+import { CardMovieRelates } from './_CardMovieRelates';
+import { PosterMovie } from "./_PosterMovie";
 
 export default async function MovieDetailPage({ params }: { params: { id: string } }) {
-    const movie = await getMovieDetails(params.id);
-    const recommendations: Movie[] = await getRecommendations(params.id);
+    if (!params || !params.id) {
+        throw new Error('Missing Movie ID in params');
+    }
+
+    const { id } = params;
+    const movie = await getMovieDetails(id);
+    const recommendations: Movie[] = await getRecommendations(id);
 
     if (!movie) {
         return <p>No se encontró la película</p>;

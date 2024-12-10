@@ -1,4 +1,5 @@
 import React from 'react'
+import '../../styles/rating.css'
 
 interface Props {
     score: number;

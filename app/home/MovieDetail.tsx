@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const MovieDetail = ({ movie }: Props) => {
-    const { release_date, title, backdrop_path, vote_average } = movie;
+    const { release_date, title, backdrop_path, vote_average, id } = movie;
 
     const imageUrl = backdrop_path
         ? `${process.env.NEXT_PUBLIC_API_IMG}${backdrop_path}`
@@ -17,7 +17,7 @@ export const MovieDetail = ({ movie }: Props) => {
 
     return (
         <div className="card-movie">
-            <Link href={`/home/${movie.id}`}>
+            <Link href={`/home/${id}`}>
                 <Image
                     src={imageUrl}
                     className="image-movie"

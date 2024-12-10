@@ -2,15 +2,15 @@
 
 import { CircularProgressRating } from "@/app/components/shared/CircularProgressRating"
 import { Movie } from "@/app/interfaces/movie"
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined'
+import { IconButton } from "@mui/material"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 import '../../styles/movie.css'
-import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
-import { IconButton } from "@mui/material";
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import { useRouter } from "next/navigation";
 
 interface Props { movie: Movie }
-
 
 export const PosterMovie = ({ movie }: Props) => {
     const router = useRouter();
@@ -46,7 +46,6 @@ export const PosterMovie = ({ movie }: Props) => {
                     <h1 className='title-movie-detail'>{title}</h1>
                     <div className='sub-info-movie'>
                         <p>{release_date}</p>
-                        <p>{ }</p>
                     </div>
                     <p className='description-poster-movie'>{overview}</p>
                     <div className='container-score'>
@@ -55,7 +54,7 @@ export const PosterMovie = ({ movie }: Props) => {
                             <p>Users Score</p>
                         </div>
                         <div>
-                            {/* {favorite === true ? <Favorite /> : <FavoriteBorderOutlined />} */}
+                            <FavoriteIcon />
                         </div>
                     </div>
                 </div>

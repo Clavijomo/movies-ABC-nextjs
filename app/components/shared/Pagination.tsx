@@ -2,7 +2,7 @@ import { useCategorizedMovies } from '@/app/provider/CategorizedMoviesContext';
 import React from 'react'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-
+import '../../styles/home.css'
 
 export const Pagination = () => {
     const {
