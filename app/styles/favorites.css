@@ -81,3 +81,37 @@ p {
     color: #F0B90B;
     font-size: 14px;
 }
+
+/* Mediaquery */
+@media (300px <=width <=1024px) {
+    .grid-favorites {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .section-list-favorites {
+        width: 100%;
+    }
+
+    .container-favorites {
+        margin: 7rem auto;
+        width: 90%;
+    }
+
+    .card-favorite {
+        width: 100%;
+    }
+
+    .image-favorite {
+        width: 70px;
+        height: 70px;
+    }
+
+    .favorite-description {
+        height: 70px;
+        overflow: hidden;
+        width: 100%;
+    }
+}

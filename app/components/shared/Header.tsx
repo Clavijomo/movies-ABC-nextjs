@@ -10,6 +10,7 @@ export const Header = () => {
             <div className="container-header">
                 <div className="section-options">
                     <Image
+                        priority
                         src={LogoHeader}
                         alt='logo'
                         className='logo'

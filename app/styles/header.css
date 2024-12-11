@@ -51,11 +51,15 @@
         height: 70px;
     }
 
-    .logo {
-        display: block;
+    .section-options ul {
+        padding: 0;
     }
 
-    .section-options {
+    .logo {
+        display: none;
+    }
+
+    .user-login {
         display: none;
     }
 

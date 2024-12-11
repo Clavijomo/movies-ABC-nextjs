@@ -3,6 +3,7 @@ import { Movie } from "../interfaces/movie";
 import '../styles/home.css';
 import Link from "next/link";
 import { CircularProgressRating } from "../components/shared/CircularProgressRating";
+import { getImageAPI } from "../utils/imageApi";
 
 interface Props {
     movie: Movie
@@ -11,16 +12,13 @@ interface Props {
 export const MovieDetail = ({ movie }: Props) => {
     const { release_date, title, backdrop_path, vote_average, id } = movie;
 
-    const imageUrl = backdrop_path
-        ? `${process.env.NEXT_PUBLIC_API_IMG}${backdrop_path}`
-        : 'https://via.placeholder.com/500x750?text=No+Image';
-
     return (
         <div className="card-movie">
             <Link href={`/home/${id}`}>
                 <Image
-                    src={imageUrl}
+                    src={getImageAPI(backdrop_path)}
                     className="image-movie"
+                    priority
                     width={200}
                     height={200}
                     alt="Movie"

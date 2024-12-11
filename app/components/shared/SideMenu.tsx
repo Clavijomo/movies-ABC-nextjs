@@ -1,6 +1,7 @@
 'use client'
 import { MovieCategory } from '@/app/interfaces/movie';
 import '../../styles/home.css';
+import Link from 'next/link';
 
 interface SideMenuProps {
     handleCategoryClick: (value: MovieCategory) => void;
@@ -22,6 +23,9 @@ export const SideMenu = ({ handleCategoryClick, selectedCategory, modules }: Sid
                         {module.replace('_', ' ')}
                     </li>
                 ))}
+                <Link href={'/home/favorites'}>
+                    <li>Favorites</li>
+                </Link>
             </ul>
         </aside>
     )

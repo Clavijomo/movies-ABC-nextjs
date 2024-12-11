@@ -1,22 +1,19 @@
-import { Movie } from '@/app/interfaces/movie'
-import React from 'react'
-import '../../styles/favorites.css'
+import { Movie } from '@/app/interfaces/movie';
+import { getImageAPI } from '@/app/utils/imageApi';
 import StarIcon from '@mui/icons-material/Star';
 import Image from 'next/image';
+import '../../styles/favorites.css';
 
 type PropsT = Omit<Movie, 'release_date' | 'id'>
 
 export const CardFavorite = (props: PropsT) => {
-    const imageUrl = props.backdrop_path
-        ? `${process.env.NEXT_PUBLIC_API_IMG}${props.backdrop_path}`
-        : 'https://via.placeholder.com/500x750?text=No+Image';
-
     return (
         <div className='card-favorite'>
             <div>
                 <div className='section-image'>
                     <Image
-                        src={imageUrl}
+                        src={getImageAPI(props.backdrop_path)}
+                        priority
                         className='image-favorite'
                         width={50}
                         height={50}

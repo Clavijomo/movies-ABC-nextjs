@@ -1,6 +1,5 @@
 export interface Movie {
     title: string
-    vote_count: number
     vote_average: number
     id: number
     overview: string

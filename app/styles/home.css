@@ -133,7 +133,7 @@ a {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 16px;
-    max-width: 1200px;
+    max-width: 100%;
     overflow-y: auto;
     flex: 1;
     margin: 0 auto;
@@ -246,10 +246,12 @@ a {
         border-radius: 50px;
         overflow-y: hidden;
         position: relative;
+        padding: 10px 0px;
         display: flex;
-        width: max-content;
+        width: 100%;
         height: max-content;
         margin: auto;
+        overflow-x: auto;
     }
 
     .sidemenu h3 {
@@ -258,20 +260,23 @@ a {
 
     .sidemenu ul {
         padding: 0px;
-        overflow-x: none !important;
-        display: flex;
-        justify-content: space-around;
+        display: grid;
         width: 100%;
+        grid-template-columns: repeat(5, 1fr);
         align-items: center;
-        gap: 5px;
-        width: max-content;
+        gap: 18px;
         flex: none;
     }
 
     .sidemenu ul li {
-        margin: 0;
-        padding: 5px;
+        margin: auto;
+        padding: 5px 0px;
         font-size: 14px;
+        text-align: center;
+        width: 60px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .sidemenu ul li.active {
