@@ -1,25 +1,24 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState } from 'react';
+import { MovieCategory } from '../interfaces/movie';
 import { tmdbClient } from '../utils/tmdbClient';
 
-type Category = 'popular' | 'top_rated' | 'now_playing' | 'upcoming';
-
 interface CategorizedMoviesContextProps {
-    movies: Record<Category, any[]>;
+    movies: Record<MovieCategory, any[]>;
     error: string | null;
     currentPage: number;
     totalPages: number;
-    selectedCategory: Category;
+    selectedCategory: MovieCategory;
     nextPage: () => void;
     prevPage: () => void;
-    changeCategory: (category: Category) => void;
+    changeCategory: (category: MovieCategory) => void;
 }
 
 const CategorizedMoviesContext = createContext<CategorizedMoviesContextProps | undefined>(undefined);
 
 export const CategorizedMoviesProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [movies, setMovies] = useState<Record<Category, any[]>>({
+    const [movies, setMovies] = useState<Record<MovieCategory, any[]>>({
         now_playing: [],
         popular: [],
         top_rated: [],
@@ -28,7 +27,7 @@ export const CategorizedMoviesProvider: React.FC<{ children: React.ReactNode }> 
     const [error, setError] = useState<string | null>('');
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const [selectedCategory, setSelectedCategory] = useState<Category>('popular');
+    const [selectedCategory, setSelectedCategory] = useState<MovieCategory>('popular');
 
     const fetchMovies = async (category: string, page: number) => {
         setError(null);
@@ -39,10 +38,13 @@ export const CategorizedMoviesProvider: React.FC<{ children: React.ReactNode }> 
                 params: {
                     page,
                     sort_by: 'popularity.desc',
-                },
+                }
             });
 
-            setMovies((prevMovies) => ({ ...prevMovies, [category]: response.data.results }));
+            setMovies((prevMovies) => ({
+                ...prevMovies,
+                [category]: response.data.results
+            }));
             setCurrentPage(response.data.page);
             setTotalPages(response.data.total_pages);
         } catch {
@@ -68,7 +70,7 @@ export const CategorizedMoviesProvider: React.FC<{ children: React.ReactNode }> 
         }
     };
 
-    const changeCategory = (category: Category) => {
+    const changeCategory = (category: MovieCategory) => {
         setSelectedCategory(category);
         setCurrentPage(1);
         fetchMovies(category, 1);

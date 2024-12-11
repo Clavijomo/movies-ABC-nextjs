@@ -5,6 +5,7 @@ export interface Movie {
     id: number
     overview: string
     backdrop_path: string
+    tagline?: string
     release_date: string
 }
 

@@ -3,15 +3,10 @@
 import { Pagination } from '../components/shared/Pagination';
 import { SideMenu } from '../components/shared/SideMenu';
 import { useCategorizedMovies } from '../provider/CategorizedMoviesContext';
-import { MovieDetail } from './MovieDetail';
+import { MovieDetail } from './_MovieDetail';
 
 export default function HomePage() {
-    const {
-        movies,
-        selectedCategory,
-        changeCategory,
-    } = useCategorizedMovies();
-
+    const { movies, selectedCategory, changeCategory } = useCategorizedMovies();
     const categories: ('popular' | 'top_rated' | 'now_playing' | 'upcoming')[] = ['popular', 'top_rated', 'now_playing', 'upcoming'];
 
     return (

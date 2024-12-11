@@ -1,11 +1,11 @@
 'use client'
 import { MovieCategory } from '@/app/interfaces/movie';
-import '../../styles/home.css'
+import '../../styles/home.css';
 
 interface SideMenuProps {
     handleCategoryClick: (value: MovieCategory) => void;
     selectedCategory: string
-    modules: string[]
+    modules: MovieCategory[]
 }
 
 export const SideMenu = ({ handleCategoryClick, selectedCategory, modules }: SideMenuProps) => {
@@ -19,7 +19,7 @@ export const SideMenu = ({ handleCategoryClick, selectedCategory, modules }: Sid
                         className={selectedCategory === module ? 'active' : ""}
                         key={module}
                     >
-                        {module.replace('_', ' ').toLowerCase()}
+                        {module.replace('_', ' ')}
                     </li>
                 ))}
             </ul>

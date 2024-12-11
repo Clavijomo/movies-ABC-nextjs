@@ -2,12 +2,14 @@
 
 import { CircularProgressRating } from "@/app/components/shared/CircularProgressRating"
 import { Movie } from "@/app/interfaces/movie"
+import { useFavorites } from "@/app/provider/FavoritesContext"
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined'
 import { IconButton } from "@mui/material"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import '../../styles/movie.css'
 
 interface Props { movie: Movie }
@@ -15,7 +17,16 @@ interface Props { movie: Movie }
 export const PosterMovie = ({ movie }: Props) => {
     const router = useRouter();
 
-    const { title, overview, release_date, vote_average } = movie;
+    const { title, overview, release_date, vote_average, id } = movie;
+    const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
+
+    const handleFavoriteClick = () => {
+        if (isFavorite(id)) {
+            removeFromFavorites(id);
+        } else {
+            addToFavorites(movie);
+        }
+    }
 
     return (
         <div className='container-detail-movie'>
@@ -54,7 +65,13 @@ export const PosterMovie = ({ movie }: Props) => {
                             <p>Users Score</p>
                         </div>
                         <div>
-                            <FavoriteIcon />
+                            <IconButton onClick={handleFavoriteClick}>
+                                {isFavorite(id) ? (
+                                    <FavoriteIcon color="warning" />
+                                ) : (
+                                    <FavoriteBorderIcon color="warning" />
+                                )}
+                            </IconButton>
                         </div>
                     </div>
                 </div>

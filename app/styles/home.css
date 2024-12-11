@@ -106,6 +106,7 @@ a {
 }
 
 .sidemenu ul li {
+    text-transform: capitalize;
     padding: 10px 15px;
     margin-bottom: 5px;
     cursor: pointer;
