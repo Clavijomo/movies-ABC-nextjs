@@ -1,7 +1,8 @@
 'use client'
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 import { Movie } from "../interfaces/movie";
+import { useGenericContext } from "../utils/genericContext";
 
 interface FavoritesContextProps {
     favorites: Movie[];
@@ -47,10 +48,7 @@ export const FavoritesProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 }
 
 export const useFavorites = () => {
-    const context = useContext(FavoritesContext);
-    if (!context) {
-        throw new Error('UseFavorites debe ser usado dentro de FavoritesProvier');
-    }
-
-    return context;
+    return useGenericContext(FavoritesContext,
+        'useFavorites debe ser usado dentro de FavoritesProvider'
+    );
 }

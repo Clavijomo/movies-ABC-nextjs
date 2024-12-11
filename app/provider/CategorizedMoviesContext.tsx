@@ -1,8 +1,9 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { MovieCategory } from '../interfaces/movie';
-import { tmdbClient } from '../utils/tmdbClient';
+import { tmdbClient } from '../api/tmdbClient';
+import { useGenericContext } from '../utils/genericContext';
 
 interface CategorizedMoviesContextProps {
     movies: Record<MovieCategory, any[]>;
@@ -95,10 +96,7 @@ export const CategorizedMoviesProvider: React.FC<{ children: React.ReactNode }> 
 }
 
 export const useCategorizedMovies = () => {
-    const context = useContext(CategorizedMoviesContext);
-    if (!context) {
-        throw new Error('useCategorizedMovies debe ser usado dentro de CategorizedMoviesProvider');
-    }
-
-    return context;
+    return useGenericContext(CategorizedMoviesContext,
+        'useCategorizedMovies debe ser usado dentro de CategorizedMoviesProvider'
+    );
 }

@@ -1,4 +1,4 @@
-import { tmdbClient } from "../utils/tmdbClient";
+import { tmdbClient } from "./tmdbClient";
 
 export async function getMovieDetails(movieId: string | string[] | undefined) {
     if (!movieId) throw new Error("Movie ID is required");

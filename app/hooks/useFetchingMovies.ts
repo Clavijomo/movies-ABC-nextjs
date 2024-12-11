@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { tmdbClient } from '../utils/tmdbClient';
+import { tmdbClient } from '../api/tmdbClient';
 import { Movie } from '../interfaces/movie';
 
 export const useMovies = () => {
@@ -19,7 +19,7 @@ export const useMovies = () => {
             });
 
             setMovies(response.data.results);
-        } catch (error) {
+        } catch {
             setError('Hubo un error al cargar las películas');
         } finally {
             setLoading(false);
