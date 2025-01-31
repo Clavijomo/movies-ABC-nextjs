@@ -48,31 +48,31 @@ La nomenclatura y estructura del proyecto está organizado según Documentación
 
 ```
 ├── app
-│   ├── components                          ### Componentes
-│   │   ├── shared                          ### Componentes que se reutilizan en toda la app
+│   ├── components                ### Componentes
+│   │   ├── shared                ### Componentes que se reutilizan en toda la app
 │   │   │   ├── Header.tsx
 │   │   │   ├── SideMenu.tsx
 │   │   │   └── ...
-│   ├── home                                ### Punto de entrada de la app y alojamiento de todas las vistas, routers
+│   ├── home                     ### Punto de entrada de la app y alojamiento de todas las vistas, routers
 │   │   ├── layout.tsx
 │   │   ├── page.tsx
 │   │   ├── _MovieDetail.tsx
 │   │   └── ...  
-│   ├── hooks                                ### Hooks personalizados para seperación de lógica, reutilización y modularización
+│   ├── hooks     ### Hooks personalizados para seperación de lógica, reutilización y modularización
 │   │   └── useFetchingMovies.ts
-│   ├── provider                            ### Estados Globales de la App.
+│   ├── provider                ### Estados Globales de la App.
 │   │   ├── CategorizedMoviesContext.tsx
 │   │   ├── FavoritesContext.tsx
 │   │   ├── SearchContext.tsx
 │   │   └── ...
-│   ├── styles                              ### Hoja de estilos de la App (Mediaquery)
+│   ├── styles    ### Hoja de estilos de la App (Mediaquery)
 │   │   ├── header.css
 │   │   ├── home.css
 │   │   └── ...
-│   ├── api                        ### Alojamiento de las Request y configuración del Cliente tmdb
+│   ├── api   ### Alojamiento de las Request y configuración del Cliente tmdb
 │   │   ├── api.ts
 │   │   └── tmdbClient.ts
-├── .env.local                              ### Variables de entorno
+├── .env.local  ### Variables de entorno
 ├── package.json
 ```
 
