@@ -21,3 +21,16 @@ export async function getRecommendations(movieId: string | string[] | undefined)
         return [];
     }
 }
+
+export async function searchMovies(query: string) {
+    try {
+        const response = await tmdbClient.get('/search/movie', {
+            params: { query }
+        });
+
+        return response.data.results;
+    } catch (error: any) {
+        console.error('Error searching movies', error);
+        return [];
+    }
+}
