@@ -69,7 +69,7 @@ La nomenclatura y estructura del proyecto está organizado según Documentación
 │   │   ├── header.css
 │   │   ├── home.css
 │   │   └── ...
-│   ├── api                                 ### Alojamiento de las Request y configuración del Cliente tmdb
+│   ├── api                        ### Alojamiento de las Request y configuración del Cliente tmdb
 │   │   ├── api.ts
 │   │   └── tmdbClient.ts
 ├── .env.local                              ### Variables de entorno
