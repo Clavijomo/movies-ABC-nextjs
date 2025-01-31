@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { Movie } from "../interfaces/movie";
 import { useGenericContext } from "../utils/genericContext";
 
@@ -15,6 +15,17 @@ const FavoritesContext = createContext<FavoritesContextProps | undefined>(undefi
 
 export const FavoritesProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [favorites, setFavorites] = useState<Movie[]>([]);
+
+    useEffect(() => {
+        const storedFavorites = localStorage.getItem('favorites');
+        if (storedFavorites) {
+            setFavorites(JSON.parse(storedFavorites));
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    }, [favorites]);
 
     const addToFavorites = (movie: Movie) => {
         setFavorites((prevFavorites) => {

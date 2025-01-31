@@ -55,7 +55,7 @@ export const CategorizedMoviesProvider: React.FC<{ children: React.ReactNode }> 
 
     useEffect(() => {
         fetchMovies(selectedCategory, 1);
-    }, [])
+    }, [selectedCategory]);
 
     const nextPage = () => {
         if (currentPage < totalPages) {

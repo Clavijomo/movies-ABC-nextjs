@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import HomePage from './page';
-import { CategorizedMoviesProvider, useCategorizedMovies } from '../provider/CategorizedMoviesContext';
+import { CategorizedMoviesProvider } from '../provider/CategorizedMoviesContext';
 import { FavoritesProvider } from '../provider/FavoritesContext';
+import HomePage from './page';
 
 jest.mock('../provider/CategorizedMoviesContext', () => ({
     useCategorizedMovies: jest.fn(),

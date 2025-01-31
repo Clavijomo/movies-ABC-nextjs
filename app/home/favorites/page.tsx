@@ -31,10 +31,7 @@ export default function FavoritesHomePage() {
                     {favorites && favorites.length > 0 &&
                         <div className='grid-favorites'>
                             {favorites.map((fav, i) => (
-                                <CardFavorite
-                                    {...fav}
-                                    key={i}
-                                />
+                                <CardFavorite {...fav} key={i} />
                             ))}
                         </div>
                     }
