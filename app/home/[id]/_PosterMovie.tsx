@@ -1,6 +1,7 @@
 'use client'
 
 import { CircularProgressRating } from "@/app/components/shared/CircularProgressRating"
+import { Toaster, toast } from "sonner";
 import { Movie } from "@/app/interfaces/movie"
 import { useFavorites } from "@/app/provider/FavoritesContext"
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
@@ -24,60 +25,66 @@ export const PosterMovie = ({ movie }: Props) => {
     const handleFavoriteClick = () => {
         if (isFavorite(id)) {
             removeFromFavorites(id);
-        } else {
-            addToFavorites(movie);
+            toast.warning('Película removida de favoritos');
+            return;
         }
+
+        addToFavorites(movie);
+        toast.success('Película agregada a favoritos');
     }
 
     return (
-        <div className='container-detail-movie'>
-            <div className='overlay' />
-            <IconButton
-                onClick={() => router.back()}
-                className="button-back-poster"
-                sx={{ padding: 2 }}
-                size="medium"
-            >
-                <ArrowBackIosNewIcon />
-            </IconButton>
-            <div className='detail-movie'>
-                <div className='section-trailer-movie'>
-                    <Image
-                        src={getImageAPI(backdrop_path)}
-                        alt='movie'
-                        width={200}
-                        className='image'
-                        height={200}
-                        priority
-                    />
-                    <button>
-                        Oficial trailer
-                        <PlayArrowOutlinedIcon />
-                    </button>
-                </div>
-                <div>
-                    <h1 className='title-movie-detail'>{title}</h1>
-                    <div className='sub-info-movie'>
-                        <p>{release_date}</p>
+        <>
+            <Toaster richColors />
+            <div className='container-detail-movie'>
+                <div className='overlay' />
+                <IconButton
+                    onClick={() => router.back()}
+                    className="button-back-poster"
+                    sx={{ padding: 2 }}
+                    size="medium"
+                >
+                    <ArrowBackIosNewIcon />
+                </IconButton>
+                <div className='detail-movie'>
+                    <div className='section-trailer-movie'>
+                        <Image
+                            src={getImageAPI(backdrop_path)}
+                            alt='movie'
+                            width={200}
+                            className='image'
+                            height={200}
+                            priority
+                        />
+                        <button>
+                            Oficial trailer
+                            <PlayArrowOutlinedIcon />
+                        </button>
                     </div>
-                    <p className='poster-movie-description'>{overview}</p>
-                    <div className='container-score'>
-                        <div className='score'>
-                            <CircularProgressRating score={vote_average} />
-                            <p>Users Score</p>
+                    <div>
+                        <h1 className='title-movie-detail'>{title}</h1>
+                        <div className='sub-info-movie'>
+                            <p>{release_date}</p>
                         </div>
-                        <div>
-                            <IconButton onClick={handleFavoriteClick}>
-                                {isFavorite(id) ? (
-                                    <FavoriteIcon color="warning" />
-                                ) : (
-                                    <FavoriteBorderIcon color="warning" />
-                                )}
-                            </IconButton>
+                        <p className='poster-movie-description'>{overview}</p>
+                        <div className='container-score'>
+                            <div className='score'>
+                                <CircularProgressRating score={vote_average} />
+                                <p>Users Score</p>
+                            </div>
+                            <div>
+                                <IconButton onClick={handleFavoriteClick}>
+                                    {isFavorite(id) ? (
+                                        <FavoriteIcon color="warning" />
+                                    ) : (
+                                        <FavoriteBorderIcon color="warning" />
+                                    )}
+                                </IconButton>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }

@@ -10,7 +10,7 @@ export default function HomePage() {
     const categories: ('popular' | 'top_rated' | 'now_playing' | 'upcoming')[] = ['popular', 'top_rated', 'now_playing', 'upcoming'];
 
     return (
-        <div className='container-section-pagination'>
+        <section className='container-section-pagination'>
             <div className="dashboard-container">
                 <SideMenu
                     handleCategoryClick={changeCategory}
@@ -31,6 +31,6 @@ export default function HomePage() {
                 </div>
                 <Pagination />
             </div>
-        </div>
+        </section>
     )
 }

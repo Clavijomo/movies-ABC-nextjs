@@ -54,20 +54,26 @@ export const CategorizedMoviesProvider: React.FC<{ children: React.ReactNode }> 
     };
 
     useEffect(() => {
-        fetchMovies(selectedCategory, 1)
+        fetchMovies(selectedCategory, 1);
     }, [])
 
     const nextPage = () => {
         if (currentPage < totalPages) {
-            setCurrentPage((prev) => prev + 1);
-            fetchMovies(selectedCategory, currentPage + 1);
+            setCurrentPage((prevPage) => {
+                const newPage = prevPage + 1;
+                fetchMovies(selectedCategory, newPage);
+                return newPage;
+            });
         }
     }
 
     const prevPage = () => {
         if (currentPage > 1) {
-            setCurrentPage((prev) => prev - 1);
-            fetchMovies(selectedCategory, currentPage - 1);
+            setCurrentPage((prev) => {
+                const newPage = prev - 1;
+                fetchMovies(selectedCategory, newPage);
+                return newPage;
+            });
         }
     };
 

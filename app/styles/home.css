@@ -16,24 +16,28 @@ body {
 }
 
 .container-pagination {
-    margin-left: 20rem;
     padding: 10px;
     color: #F0B90B;
     text-align: center;
     display: flex;
-    width: 74%;
     justify-content: center;
+    margin: 20px 0 20px 20rem;
     align-items: center;
 }
 
 .container-pagination button {
-    padding: 8px;
+    padding: 3px;
     border: none;
     cursor: pointer;
     border-radius: 115px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.container-pagination button svg {
+    width: 20px;
+    height: 20px;
 }
 
 a {

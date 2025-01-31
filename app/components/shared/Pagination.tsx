@@ -18,7 +18,7 @@ export const Pagination = () => {
                 <ArrowBackIosNewIcon />
             </button>
             <span style={{ margin: '0 10px' }}>
-                Pagina {currentPage} de {totalPages}
+                Página {currentPage} - {totalPages}
             </span>
             <button onClick={nextPage} disabled={currentPage === totalPages}>
                 <ArrowForwardIosIcon />
